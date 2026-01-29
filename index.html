@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="manifest" href="manifest.json">
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js");
+  }
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>サイト保存メモ</title>
+
+  <!-- 見た目（CSS）を読み込む -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>📌 サイト保存</h1>
+
+  <input id="url" type="url" placeholder="https://example.com">
+  <textarea id="memo" placeholder="メモ（なぜ保存？）"></textarea>
+  <button onclick="saveSite()">保存</button>
+
+  <ul id="list"></ul>
+
+  <!-- 動き（JavaScript）を読み込む -->
+  <script src="script.js"></script>
+</body>
+</html>
