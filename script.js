@@ -40,3 +40,12 @@ function deleteSite(index) {
 }
 
 loadSites();
+
+// Safariで、PWAじゃない場合に案内を出す
+const isStandalone = window.matchMedia("(display-mode: standalone)").matches;
+const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+
+if (isIOS && !isStandalone) {
+  alert(" このアプリはホーム画面に追加するとデータが保存されます");
+}
+
