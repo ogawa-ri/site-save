@@ -41,11 +41,23 @@ function deleteSite(index) {
 
 loadSites();
 
-// Safariで、PWAじゃない場合に案内を出す
-const isStandalone = window.matchMedia("(display-mode: standalone)").matches;
+// ===== Safari + PWA 判定（iOS対応 完全版） =====
+
+// iOS判定
 const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+
+// PWA（スタンドアロン）判定：iOSは navigator.standalone も見る
+const isStandalone =
+  window.matchMedia("(display-mode: standalone)").matches ||
+  window.navigator.standalone === true;
+
+// Safariで、PWAじゃない場合に案内を出す
+if (isIOS && !isStandalone) {
+  alert("📌 このアプリはホーム画面に追加するとデータが保存されます");
+}
 
 if (isIOS && !isStandalone) {
   alert(" このアプリはホーム画面に追加するとデータが保存されます");
 }
+
 
