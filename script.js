@@ -1,3 +1,5 @@
+alert("JSは読み込まれています");
+
 const list = document.getElementById("list");
 
 function loadSites() {
@@ -59,5 +61,6 @@ if (isIOS && !isStandalone) {
 if (isIOS && !isStandalone) {
   alert(" このアプリはホーム画面に追加するとデータが保存されます");
 }
+
 
 
