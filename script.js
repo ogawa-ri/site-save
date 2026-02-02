@@ -1,3 +1,5 @@
+alert("script.js 読み込まれた");
+
 // 要素取得
 const urlInput = document.getElementById("urlInput");
 const saveBtn = document.getElementById("saveBtn");
@@ -50,3 +52,4 @@ function renderList() {
     list.appendChild(li);
   });
 }
+
