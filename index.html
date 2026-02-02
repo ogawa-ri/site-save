@@ -1,48 +1,47 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Site Savev2</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Site Save</title>
 
   <!-- PWA -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#ffffff">
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#2563eb" />
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <header>
-    Site Save
-  </header>
+  <div class="app">
+    <h1 class="title">Site Save</h1>
 
-  <main>
-    <div class="input-area">
-      <input type="text" id="urlInput" placeholder="https://example.com">
-      <button id="saveBtn">保存</button>
-    </div>
+    <input
+      type="text"
+      id="urlInput"
+      class="input"
+      placeholder="https://example.com"
+    />
 
-    <ul id="list"></ul>
-  </main>
+    <button id="saveBtn" class="btn primary">URLを保存</button>
 
-  <!-- JavaScript -->
+    <button id="popularBtn" class="btn ghost">
+      人気保存URL
+    </button>
+
+    <button id="myListBtn" class="btn ghost">
+      自分が保存したURLを見る
+    </button>
+
+    <ul id="list" class="list"></ul>
+  </div>
+
   <script src="script.js"></script>
 
-  <!-- Service Worker 登録 -->
   <script>
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("./service-worker.js")
-        .then(() => {
-          console.log("Service Worker registered");
-        })
-        .catch(err => {
-          console.error("SW error", err);
-        });
+      navigator.serviceWorker.register("./service-worker.js");
     }
   </script>
-
 </body>
-
 </html>
