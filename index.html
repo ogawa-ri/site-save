@@ -1,51 +1,42 @@
-<!-- <h1 style="color:red;">INDEX HTML 読み込まれています</h1>
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <link rel="manifest" href="manifest.json">
-
-    
-<script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("service-worker.js");
-  }
-</script> 
-    
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>サイト保存メモ</title>
+  <title>Site Save</title>
 
-  <!-- 見た目（CSS）を読み込む -->
-  <!-- <link rel="stylesheet" href="style.css">
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>📌 サイト保存</h1>
+  <h1>Site Save</h1>
+  <p>あとで見るサイトを保存</p>
 
-  <input id="url" type="url" placeholder="https://example.com">
-  <textarea id="memo" placeholder="メモ（なぜ保存？）"></textarea>
-  <button onclick="saveSite()">保存</button>
+  <input type="text" id="urlInput" placeholder="https://example.com">
+  <button id="saveBtn">保存</button>
 
   <ul id="list"></ul>
 
+  <!-- JavaScript -->
+  <script src="script.js"></script>
 
+  <!-- Service Worker 登録 -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("./service-worker.js")
+        .then(() => {
+          console.log("Service Worker registered");
+        })
+        .catch(err => {
+          console.error("SW error", err);
+        });
+    }
+  </script>
 
-  <!-- 動き（JavaScript）を読み込む -->
- <!-- <script src="script.js?v=1"></script>
 </body>
-</html> --> 
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>TEST</title>
-  </head>
-  <body>
-    <h1 style="color:red;">TEST PAGE</h1>
-    <p>GitHub Pages 確認用</p>
-  </body>
 </html>
-
