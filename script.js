@@ -1,4 +1,4 @@
-// ===== 画面要素 =====
+// ===== 画面 =====
 const screenHome = document.getElementById("screen-home");
 const screenList = document.getElementById("screen-list");
 const screenRecommend = document.getElementById("screen-recommend");
@@ -8,13 +8,19 @@ const toListBtn = document.getElementById("toListBtn");
 const toRecommendBtn = document.getElementById("toRecommendBtn");
 const backHomeFromList = document.getElementById("backHomeFromList");
 const backHomeFromRecommend = document.getElementById("backHomeFromRecommend");
+const saveBtn = document.getElementById("saveBtn");
 
-// ===== 画面切り替え関数 =====
+// ===== 入力 =====
+const input = document.getElementById("urlInput");
+
+// ===== データ =====
+let urls = JSON.parse(localStorage.getItem("urls")) || [];
+
+// ===== 画面切り替え =====
 function showScreen(screen) {
   screenHome.style.display = "none";
   screenList.style.display = "none";
   screenRecommend.style.display = "none";
-
   screen.style.display = "block";
 }
 
@@ -35,5 +41,17 @@ backHomeFromRecommend.addEventListener("click", () => {
   showScreen(screenHome);
 });
 
-// ===== 初期画面 =====
+saveBtn.addEventListener("click", () => {
+  const url = input.value.trim();
+  if (!url) return;
+
+  urls.push(url);
+  localStorage.setItem("urls", JSON.stringify(urls));
+  input.value = "";
+
+  // 保存したら一覧へ
+  showScreen(screenList);
+});
+
+// ===== 初期 =====
 showScreen(screenHome);
