@@ -1,67 +1,52 @@
-alert("JSは読み込まれています");
+// 要素取得
+const urlInput = document.getElementById("urlInput");
+const saveBtn = document.getElementById("saveBtn");
+const list = document.getElementById("list");
 
-// const list = document.getElementById("list");
+// 保存されているデータを取得
+let savedSites = JSON.parse(localStorage.getItem("sites")) || [];
 
-// function loadSites() {
-//   const sites = JSON.parse(localStorage.getItem("sites") || "[]");
-//   list.innerHTML = "";
+// 初期表示
+renderList();
 
-//   sites.forEach((site, index) => {
-//     const li = document.createElement("li");
-//     li.innerHTML = `
-//       <a href="${site.url}" target="_blank">${site.url}</a><br>
-//       <small>${site.memo}</small><br>
-//       <button onclick="deleteSite(${index})">削除</button>
-//     `;
-//     list.appendChild(li);
-//   });
-// }
+// 保存ボタン
+saveBtn.addEventListener("click", () => {
+  const url = urlInput.value.trim();
 
-// function saveSite() {
-//   const url = document.getElementById("url").value;
-//   const memo = document.getElementById("memo").value;
+  if (url === "") {
+    alert("URLを入力してください");
+    return;
+  }
 
-//   if (!url) return alert("URLを入力してください");
+  savedSites.push(url);
+  localStorage.setItem("sites", JSON.stringify(savedSites));
 
-//   const sites = JSON.parse(localStorage.getItem("sites") || "[]");
-//   sites.push({ url, memo });
+  urlInput.value = "";
+  renderList();
+});
 
-//   localStorage.setItem("sites", JSON.stringify(sites));
+// リスト表示
+function renderList() {
+  list.innerHTML = "";
 
-//   document.getElementById("url").value = "";
-//   document.getElementById("memo").value = "";
+  savedSites.forEach((url, index) => {
+    const li = document.createElement("li");
 
-//   loadSites();
-// }
+    const a = document.createElement("a");
+    a.href = url;
+    a.textContent = url;
+    a.target = "_blank";
 
-// function deleteSite(index) {
-//   const sites = JSON.parse(localStorage.getItem("sites"));
-//   sites.splice(index, 1);
-//   localStorage.setItem("sites", JSON.stringify(sites));
-//   loadSites();
-// }
+    const delBtn = document.createElement("button");
+    delBtn.textContent = "削除";
+    delBtn.addEventListener("click", () => {
+      savedSites.splice(index, 1);
+      localStorage.setItem("sites", JSON.stringify(savedSites));
+      renderList();
+    });
 
-// loadSites();
-
-// // ===== Safari + PWA 判定（iOS対応 完全版） =====
-
-// // iOS判定
-// const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
-
-// // PWA（スタンドアロン）判定：iOSは navigator.standalone も見る
-// const isStandalone =
-//   window.matchMedia("(display-mode: standalone)").matches ||
-//   window.navigator.standalone === true;
-
-// // Safariで、PWAじゃない場合に案内を出す
-// if (isIOS && !isStandalone) {
-//   alert("📌 このアプリはホーム画面に追加するとデータが保存されます");
-// }
-
-// if (isIOS && !isStandalone) {
-//   alert(" このアプリはホーム画面に追加するとデータが保存されます");
-// }
-
-
-
-
+    li.appendChild(a);
+    li.appendChild(delBtn);
+    list.appendChild(li);
+  });
+}
