@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Site Save</title>
 
-  <!-- PWA -->
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#2563eb" />
 
@@ -13,28 +12,48 @@
 </head>
 <body>
 
-  <div class="app">
-    <h1 class="title">Site Save</h1>
+  <!-- ===== 画面① 保存画面 ===== -->
+  <section id="screen-home" class="screen">
+    <h1>Site Save</h1>
 
     <input
       type="text"
       id="urlInput"
-      class="input"
       placeholder="https://example.com"
     />
 
-    <button id="saveBtn" class="btn primary">URLを保存</button>
+    <button id="saveBtn">URLを保存</button>
 
-    <button id="popularBtn" class="btn ghost">
-      人気保存URL
-    </button>
-
-    <button id="myListBtn" class="btn ghost">
+    <button id="toListBtn">
       自分が保存したURLを見る
     </button>
 
-    <ul id="list" class="list"></ul>
-  </div>
+    <button id="toRecommendBtn">
+      おすすめURLを見る
+    </button>
+  </section>
+
+  <!-- ===== 画面② 自分の保存一覧 ===== -->
+  <section id="screen-list" class="screen" style="display:none;">
+    <h1>保存したURL一覧</h1>
+
+    <ul id="myUrlList"></ul>
+
+    <button id="backHomeFromList">
+      戻る
+    </button>
+  </section>
+
+  <!-- ===== 画面③ おすすめ ===== -->
+  <section id="screen-recommend" class="screen" style="display:none;">
+    <h1>おすすめURL</h1>
+
+    <ul id="recommendList"></ul>
+
+    <button id="backHomeFromRecommend">
+      戻る
+    </button>
+  </section>
 
   <script src="script.js"></script>
 
@@ -43,5 +62,6 @@
       navigator.serviceWorker.register("./service-worker.js");
     }
   </script>
+
 </body>
 </html>
